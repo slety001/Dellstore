@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Kundenübersicht</title>
+</h:head>
+<h:body>
+
+	<ui:composition template="/WEB-INF/templates/base.xhtml">
+		<ui:define name="content">
+			<h2 class="bg-info">
+				<h:outputText value="Kundenübersicht" />
+			</h2>
+			<br></br>
+			<h:form>
+				<h:panelGrid columns="10">
+					<h:outputLabel for="dv" value="Benutzername: " />
+					<h:inputText id="dv" value="#{kunden.searchCust.userName}" converter="estnconv"/>
+					<h:outputLabel for="dv" value="Vorname: " />
+					<h:inputText value="#{kunden.searchCust.firstName}" converter="estnconv"/>
+					<h:outputLabel for="dv" value="Nachname: " />
+					<h:inputText value="#{kunden.searchCust.lastName}" converter="estnconv"/>
+					<h:outputLabel for="dv" value="Adresse: " />
+					<h:inputText value="#{kunden.searchCust.address1}" converter="estnconv"/>
+					<h:outputLabel for="dv" value="Adresse(alternativ): " />
+					<h:inputText value="#{kunden.searchCust.address2}" converter="estnconv"/>
+					<h:outputLabel for="dv" value="Stadt: " />
+					<h:inputText value="#{kunden.searchCust.city}" converter="estnconv"/>
+					<h:outputLabel for="dv" value="Bundesland: " />
+					<h:inputText value="#{kunden.searchCust.state}" converter="estnconv"/>
+					<h:outputLabel for="dv" value="PLZ: " />
+					<h:inputText id="zip" value="#{kunden.searchCust.zip}" converter="estnconv">
+						<f:validator validatorId="digitsvalid" />
+					</h:inputText>
+					<h:outputLabel for="dv" value="Land: " />
+					<h:inputText value="#{kunden.searchCust.country}" converter="estnconv"/>
+					<h:outputLabel for="dv" value="Region: " />
+					<h:inputText id="region" value="#{kunden.searchCust.region}" converter="estnconv">
+						<f:validator validatorId="digitsvalid" />
+					</h:inputText>
+					<h:outputLabel for="dv" value="Email: " />
+					<h:inputText value="#{kunden.searchCust.email}" converter="estnconv"/>
+					<h:outputLabel for="dv" value="Telefonnummer: " />
+					<h:inputText value="#{kunden.searchCust.phone}" converter="estnconv"/>
+					<h:outputLabel for="dv" value="Kreditkartentyp: " />
+					<h:inputText id="cct" for="dv" value="#{kunden.searchCust.creditCardType}" converter="estnconv">
+						<f:validator validatorId="digitsvalid" />
+					</h:inputText>
+					<h:outputLabel for="dv" value="Kreditkarte: " />
+					<h:inputText value="#{kunden.searchCust.creditCard}" converter="estnconv"/>
+					<h:outputLabel for="dv" value="Gültig bis: " />
+					<h:inputText value="#{kunden.searchCust.creditCardExpiration}" converter="estnconv"/>
+					<h:outputLabel for="dv" value="Alter: " />
+					<h:inputText id="age" value="#{kunden.searchCust.age}" converter="estnconv">
+						<f:validator validatorId="digitsvalid" />
+					</h:inputText>
+					<h:outputLabel for="dv" value="Einkommen: " />
+					<h:inputText id="income" value="#{kunden.searchCust.income}" converter="estnconv">
+						<f:validator validatorId="digitsvalid" />
+					</h:inputText>
+					<h:outputLabel for="dv" value="Geschlecht: " />
+					<h:inputText value="#{kunden.searchCust.gender}" converter="estnconv"/>
+					<h:commandButton action="#{kunden.search}" value="Suchen" />
+					<h:message for="dv"/>
+				</h:panelGrid>
+			</h:form>
+			<h:form>
+				<h:dataTable class="table table-striped" var="customer"
+					value="#{kunden.beanchen}" 
+					first="#{kunden.beanchenPager.first}" rows="#{kunden.beanchenPager.noRows}">
+					<h:column>
+						<f:facet name="header">
+							<h:commandLink id="getUserName" actionListener="#{kunden.sort}">
+								<h:outputText value="Benutzername" />
+							</h:commandLink>
+						</f:facet>
+						<h:commandLink actionListener="#{kunden.details}" action="kundenDetail">
+							<f:attribute name="user" value="#{customer}" />
+
+							<h:outputText value="#{customer.userName}" />
+						</h:commandLink>
+
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:commandLink id="getFirstName" actionListener="#{kunden.sort}">
+								<h:outputText value="Vorname" />
+							</h:commandLink>
+						</f:facet>
+						<h:outputText value="#{customer.firstName}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:commandLink id="getLastName" actionListener="#{kunden.sort}">
+								<h:outputText value="Nachname" />
+							</h:commandLink>
+						</f:facet>
+						<h:outputText value="#{customer.lastName}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:commandLink id="getAge" actionListener="#{kunden.sort}">
+								<h:outputText value="Alter" />
+							</h:commandLink>
+						</f:facet>
+						<h:outputText value="#{customer.age}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:commandLink id="getGender" actionListener="#{kunden.sort}">
+								<h:outputText value="Geschlecht" />
+							</h:commandLink>
+						</f:facet>
+						<h:outputText value="#{customer.gender}" />
+					</h:column>
+				</h:dataTable>
+				<h:commandButton class="btn btn-primary" action="#{kunden.beanchenPager.start}" value="Start" />
+				<h:commandButton class="btn btn-default" action="#{kunden.beanchenPager.zurueck}" value="Zurück" />
+				<h:commandButton class="btn btn-default" action="#{kunden.beanchenPager.vor}" value="Vor" />
+				<h:commandButton class="btn btn-primary" action="#{kunden.beanchenPager.ende}" value="Ende" />
+			</h:form>
+			<h:messages />
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

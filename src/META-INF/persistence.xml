@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+	http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+	version="2.1">
+	
+    <persistence-unit name="dellstore">
+        <class>de.medieninf.webanw.dellstore.Category</class>
+        <class>de.medieninf.webanw.dellstore.Customer</class>
+        <class>de.medieninf.webanw.dellstore.Product</class>
+        <class>de.medieninf.webanw.dellstore.Order</class>
+        <class>de.medieninf.webanw.dellstore.OrderLine</class>
+        <properties>
+            <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://db.intern.mi.hs-rm.de:5432/nkrei001_dellstore"/>
+            <property name="javax.persistence.jdbc.user" value="nkrei001"/>
+            <property name="javax.persistence.jdbc.password" value="0815"/>
+            <property name="javax.persistence.logging.level" value="INFO"/>
+        </properties>
+    </persistence-unit>
+
+</persistence>

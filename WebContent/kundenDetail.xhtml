@@ -1,0 +1,219 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+<ui:composition template="/WEB-INF/templates/base.xhtml">
+
+	<ui:define name="content">
+
+		<h2 class="bg-info">Kundendetails :
+			#{kunden.selectedCust.userName}</h2>
+		<br />
+
+		<h:form>
+			<div class="row">
+				<div class="col-md-4">
+					<div class="input-group">
+						<span class="input-group-addon" id="basic-addon1">Benutzername</span>
+						<h:inputText value="#{kunden.currentCopy.userName}"
+							class="form-control" disabled="true" />
+					</div>
+
+				</div>
+				<div class="col-md-4">
+					<div class="input-group">
+						<span class="input-group-addon" id="basic-addon1">Vorname</span>
+						<h:inputText value="#{kunden.currentCopy.firstName}"
+							class="form-control" aria-describedby="basic-addon1"
+							disabled="#{not kunden.edit}" listener="#{kunden.makeEdit}"
+							render="input" />
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="input-group">
+						<span class="input-group-addon" id="basic-addon1">Nachname</span>
+						<h:inputText value="#{kunden.currentCopy.lastName}"
+							class="form-control" aria-describedby="basic-addon1"
+							disabled="#{not kunden.edit}" listener="#{kunden.makeEdit}"
+							render="input" />
+					</div>
+				</div>
+			</div>
+			<br />
+			<div class="row">
+				<div class="col-md-4">
+					<div class="input-group">
+						<span class="input-group-addon" id="basic-addon1">Adresse</span>
+						<h:inputText value="#{kunden.currentCopy.address1}"
+							class="form-control" aria-describedby="basic-addon1"
+							disabled="#{not kunden.edit}" listener="#{kunden.makeEdit}"
+							render="input" />
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="input-group">
+						<span class="input-group-addon" id="basic-addon1">Adresse(alternativ)</span>
+						<h:inputText value="#{kunden.currentCopy.address2}"
+							class="form-control" aria-describedby="basic-addon1"
+							disabled="#{not kunden.edit}" listener="#{kunden.makeEdit}"
+							render="input" />
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="input-group">
+						<span class="input-group-addon" id="basic-addon1">Stadt</span>
+						<h:inputText value="#{kunden.currentCopy.city}"
+							class="form-control" aria-describedby="basic-addon1"
+							disabled="#{not kunden.edit}" listener="#{kunden.makeEdit}"
+							render="input" />
+					</div>
+				</div>
+			</div>
+			<br />
+			<div class="row">
+				<div class="col-md-4">
+					<div class="input-group">
+						<span class="input-group-addon" id="basic-addon1">Bundesland</span>
+						<h:inputText value="#{kunden.currentCopy.state}"
+							class="form-control" aria-describedby="basic-addon1"
+							disabled="#{not kunden.edit}" listener="#{kunden.makeEdit}"
+							render="input" />
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="input-group">
+						<span class="input-group-addon" id="basic-addon1">PLZ</span>
+						<h:inputText value="#{kunden.currentCopy.zip}"
+							class="form-control" aria-describedby="basic-addon1"
+							disabled="#{not kunden.edit}" listener="#{kunden.makeEdit}"
+							render="input" />
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="input-group">
+						<span class="input-group-addon" id="basic-addon1">Land</span>
+						<h:inputText value="#{kunden.currentCopy.country}"
+							class="form-control" aria-describedby="basic-addon1"
+							disabled="#{not kunden.edit}" listener="#{kunden.makeEdit}"
+							render="input" />
+					</div>
+				</div>
+			</div>
+			<br />
+			<div class="row">
+				<div class="col-md-4">
+					<div class="input-group">
+						<span class="input-group-addon" id="basic-addon1">Region</span>
+						<h:inputText value="#{kunden.currentCopy.region}"
+							class="form-control" aria-describedby="basic-addon1"
+							disabled="#{not kunden.edit}" listener="#{kunden.makeEdit}"
+							render="input" />
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="input-group">
+						<span class="input-group-addon" id="basic-addon1">Email</span>
+						<h:inputText value="#{kunden.currentCopy.email}"
+							class="form-control" aria-describedby="basic-addon1"
+							disabled="#{not kunden.edit}" listener="#{kunden.makeEdit}"
+							render="input" />
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="input-group">
+						<span class="input-group-addon" id="basic-addon1">Telefonnummer</span>
+						<h:inputText value="#{kunden.currentCopy.phone}"
+							class="form-control" aria-describedby="basic-addon1"
+							disabled="#{not kunden.edit}" listener="#{kunden.makeEdit}"
+							render="input" />
+					</div>
+				</div>
+			</div>
+			<br />
+			<div class="row">
+				<div class="col-md-4">
+					<div class="input-group">
+						<span class="input-group-addon" id="basic-addon1">Kreditkartentyp</span>
+						<h:inputText value="#{kunden.currentCopy.creditCardType}"
+							class="form-control" aria-describedby="basic-addon1"
+							disabled="#{not kunden.edit}" listener="#{kunden.makeEdit}"
+							render="input" />
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="input-group">
+						<span class="input-group-addon" id="basic-addon1">Kreditkarte</span>
+						<h:inputText value="#{kunden.currentCopy.creditCard}"
+							class="form-control" aria-describedby="basic-addon1"
+							disabled="#{not kunden.edit}" listener="#{kunden.makeEdit}"
+							render="input" />
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="input-group">
+						<span class="input-group-addon" id="basic-addon1">Gültig
+							bis</span>
+						<h:inputText value="#{kunden.currentCopy.creditCardExpiration}"
+							class="form-control" aria-describedby="basic-addon1"
+							disabled="#{not kunden.edit}" listener="#{kunden.makeEdit}"
+							render="input" />
+					</div>
+				</div>
+			</div>
+			<br />
+			<div class="row">
+				<div class="col-md-4">
+					<div class="input-group">
+						<span class="input-group-addon" id="basic-addon1">Alter</span>
+						<h:inputText value="#{kunden.currentCopy.age}"
+							class="form-control" aria-describedby="basic-addon1"
+							disabled="#{not kunden.edit}" listener="#{kunden.makeEdit}"
+							render="input" />
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="input-group">
+						<span class="input-group-addon" id="basic-addon1">Einkommen</span>
+						<h:inputText value="#{kunden.currentCopy.income}"
+							class="form-control" aria-describedby="basic-addon1"
+							disabled="#{not kunden.edit}" listener="#{kunden.makeEdit}"
+							render="input" />
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="input-group">
+						<span class="input-group-addon" id="basic-addon1">Geschlecht</span>
+						<h:inputText value="#{kunden.currentCopy.gender}"
+							class="form-control" aria-describedby="basic-addon1"
+							disabled="#{not kunden.edit}" listener="#{kunden.makeEdit}"
+							render="input" />
+					</div>
+				</div>
+
+			</div>
+
+			<br />
+			<h:form class="form-inline" action="#" method="post">
+				<div class="form-group">
+					<h:commandButton action="#{kunden.backToView}"
+						class="btn btn-default" name="back" value="Zurück"></h:commandButton>
+
+
+					<h:commandButton class="btn btn-primary"
+						action="#{kunden.makeEdit}" name="edit" rendered="#{kunden.edit ? false : true}" value="Bearbeiten" disabled="#{shopbean.user eq 'Gast' ? true : false}" />
+					<h:commandButton class="btn btn-primary" name="sendEdit" rendered="#{kunden.edit ? true : false}"
+						action="#{kunden.sendEdit}"
+						value="Speichern" />
+				</div>
+			</h:form>
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+</html>

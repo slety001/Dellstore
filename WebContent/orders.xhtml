@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Bestellungsübersicht</title>
+</h:head>
+<h:body>
+
+<ui:composition template="/WEB-INF/templates/base.xhtml">
+
+	<ui:define name="content">
+		<h:form>
+			<h2 class="bg-info"><h:outputText value="Alle Bestellungen" /></h2>
+			<h:dataTable class="table table-striped" var="order" value="#{orders.allorders}" >
+				<h:column>
+					<f:facet name="header">
+						<h:commandLink id="orderId" actionListener="#{orders.sort}">
+							<h:outputText value="BestellungNr" />
+						</h:commandLink>
+					</f:facet>
+					<h:outputText value="#{order.orderId}"/>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:commandLink id="orderDate" actionListener="#{orders.sort}">
+							<h:outputText value="Datum" />
+						</h:commandLink>
+					</f:facet>
+					<h:outputText value="#{order.orderDate}">
+						<f:convertDateTime type="date" dateStyle="medium" locale="de_DE" timeZone="EET"/>
+					</h:outputText>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Vorname" />
+					</f:facet>
+					<h:outputText value="#{order.customer.firstName}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Nachname" />
+					</f:facet>
+					<h:outputText value="#{order.customer.lastName}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:commandLink id="netAmount" actionListener="#{orders.sort}">
+							<h:outputText value="Preis" />
+						</h:commandLink>
+					</f:facet>
+					<h:outputText value="#{order.netAmount}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:commandLink id="tax" actionListener="#{orders.sort}">
+							<h:outputText value="MwSt" />
+						</h:commandLink>
+					</f:facet>
+					<h:outputText value="#{order.tax}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:commandLink id="totalAmount" actionListener="#{orders.sort}">
+							<h:outputText value="Gesammtpreis" />
+						</h:commandLink>
+					</f:facet>
+					<h:outputText value="#{order.totalAmount}" />
+				</h:column>
+			</h:dataTable>
+			<h:commandButton class="btn btn-primary" action="#{orders.pager.start}" value="Start" />
+			<h:commandButton class="btn btn-default" action="#{orders.pager.zurueck}" value="Zurück" />
+			<h:commandButton class="btn btn-default" action="#{orders.pager.vor}" value="Vor" />
+			<h:commandButton class="btn btn-primary" action="#{orders.pager.ende}" value="Ende" />
+			</h:form>
+			<h:messages />
+	</ui:define>
+</ui:composition>
+</h:body>
+</html>

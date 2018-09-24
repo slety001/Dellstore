@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<body>
+
+	<!-- Wichtig Inhalt mit ui:composition umschließen, dann wird das äußere Gerüst bei includes nicht gerendert -->
+	<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:f="http://xmlns.jcp.org/jsf/core"
+		xmlns:h="http://xmlns.jcp.org/jsf/html"
+		xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+		xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+		<h:form class="form-inline" action="#" method="post">
+			<h2 class="bg-warning">Bitte melden Sie sich an!</h2>
+			<br></br>
+			<div class="form-group">
+				<h:inputText type="text" class="form-control" id="userName"
+					name="loginUser" a:placeholder="Benutzername" value="#{login.user}"></h:inputText>
+			</div>
+			<div class="form-group">
+				<h:inputSecret type="password" class="form-control" name="pwd"
+					a:placeholder="Passwort" value="#{login.pwd}"></h:inputSecret>
+			</div>
+			<h:commandButton action="#{login.validateUsernamePassword}" class="btn btn-primary" name="anmelden"
+				value="Anmelden"></h:commandButton>
+			<h:button type="submit" class="btn btn-default" name="cancelLogin"
+				value="Zur&uuml;ck"></h:button>
+		</h:form>
+
+	<!-- <h:outputText value="#{login.output}" /> 
+	-->
+
+	</ui:composition>
+
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Produktsübersicht</title>
+</h:head>
+<h:body>
+
+	<ui:composition template="/WEB-INF/templates/base.xhtml">
+
+		<ui:define name="content">
+			<h:form>
+				<h2 class="bg-info">
+					<h:outputText value="Produkte" />
+				</h2>
+				<h:dataTable class="table table-striped" var="product"
+					value="#{produkte.allproducts}">
+					<h:column>
+						<f:facet name="header">
+							<h:commandLink id="productId" actionListener="#{produkte.sort}">
+								<h:outputText value="ProduktNr" />
+							</h:commandLink>
+						</f:facet>
+						<h:commandLink rendered="#{shopbean.user eq 'Gast' ? false : true}" action="#{produkte.details(product.productId)}">
+						
+							<h:outputText value="#{product.productId}" />
+						</h:commandLink>
+						<h:outputText rendered="#{shopbean.user eq 'Gast' ? true : false}" value="#{product.productId}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:commandLink id="title" actionListener="#{produkte.sort}">
+								<h:outputText value="Titel" />
+							</h:commandLink>
+						</f:facet>
+						<h:outputText value="#{product.title}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:commandLink id="actor" actionListener="#{produkte.sort}">
+								<h:outputText value="Schauspieler" />
+							</h:commandLink>
+						</f:facet>
+						<h:outputText value="#{product.actor}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:commandLink id="price" actionListener="#{produkte.sort}">
+								<h:outputText value="Preis" />
+							</h:commandLink>
+						</f:facet>
+						<h:outputText value="#{product.price}" />
+					</h:column>
+				</h:dataTable>
+				<h:commandButton class="btn btn-primary" action="#{produkte.pager.start}" value="Start" />
+				<h:commandButton class="btn btn-default" action="#{produkte.pager.zurueck}" value="Zurück" />
+				<h:commandButton class="btn btn-default" action="#{produkte.pager.vor}" value="Vor" />
+				<h:commandButton class="btn btn-primary" action="#{produkte.pager.ende}" value="Ende" />
+			</h:form>
+			<h:messages />
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
