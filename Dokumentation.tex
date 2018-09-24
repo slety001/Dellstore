@@ -1,0 +1,130 @@
+%%This is a very basic article template.
+%%There is just one section and two subsections.
+\documentclass [a4paper]{article}
+\usepackage{german}
+\usepackage [utf8]{inputenc}
+\usepackage{longtable}
+\usepackage{fancyhdr}
+\newcommand{\quotes}[1]{``#1''}
+
+\begin{document}
+\pagestyle{fancy} %eigener Seitenstil
+\fancyhf{} %alle Kopf- und Fußzeilenfelder bereinigen
+\fancyhead[L]{Web-basierte Anwendungen || Abgabe 2} %Kopfzeile links
+\fancyhead[C]{Web-basierte Anwendungen || Abgabe 2: DVD-Shop Java} %zentrierte
+% Kopfzeile
+\fancyhead[R]{} %Kopfzeile rechts
+\renewcommand{\headrulewidth}{0.4pt} %obere Trennlinie
+\fancyfoot[L]{Rebecca Brunclik, Nadine Kreisel, Simon Letychevskyy, Dimitri
+Schneider }
+\fancyfoot[R]{\thepage}
+\renewcommand{\footrulewidth}{0.4pt} %untere Trennlinie
+\title{Dokumentation Web-basierte Anwendungen Abgabe 2}
+\author{Rebecca Brunclik, Nadine Kreisel, Simon Letychevskyy, Dimitri Schneider }
+\maketitle{}
+\thispagestyle{empty}
+\noindent
+\lhead{}
+\lfoot{Rebecca Brunclik, Nadine Kreisel, Simon Letychevskyy, Dimitri Schneider }
+\newpage
+\section{Konfiguration}
+Um diese Web-Anwendung verwenden zu können, muss die Datei \-\textbf{Dellstore.war} 
+in den gewünschten Webserver integriert werden. Diese Version ist optimiert für den 
+\textbf{Apache Tomcat/8.0.20}, der hierfür den Bereich \texttt{Deploy} in der \texttt{Manager App} 
+anbietet.\\
+Die Anwendung ist auf die Verwendung von PostgreSQL ausgelegt. Auf Ihrer Datenbank sollte die Dellstore-Datenbank 
+eingerichtet sein. Hierzu führen Sie bitte das Skript \texttt{dellstore\_reload.sql} aus.
+\\
+Um die Anwendung an Ihre Umgebung anpassen zu können, liegt im Ordner
+\texttt{META-INF} die Konfigurationsdatei \texttt{persistence.xml} bereit. Hier ersetzen Sie bitte
+die Werte der \textbf{Properties} \texttt{javax.persistence.jdbc.url}, \texttt{javax.persis\-tence.jdbc.user} 
+und \texttt{javax.persistence.jdbc.password} durch Ihren eigenen Datenbank-Host und -Namen, 
+den Benutzernamen und das Passwort.\\
+
+
+\section{Übersicht}
+%hier die Seitenübersicht:
+%Startseite verlinkt standardmäßig auf die Kunden. Was findet man auf den
+% einzelnen Seiten , wie kommt man wo hin etc.
+
+\textbf{Navigation} \\
+%was wird wann angezeigt, welche Möglichkeiten hat man
+Die Startseite begrüßt den Anwender als Gast. Sie fordert ihn dazu auf, sich einzuloggen und
+enthält die dazu benötigte Maske, einen \texttt{Anmelden}- und
+einen \texttt{Zurück}-Button. Nach dem Einloggen erscheint eine Willkommensmeldung und die Navigationsleiste wird um den Warenkorb erweitert. Bei falscher
+Eingabe wird eine automatisch generierte Warnung oder (bei falschem Passwortformat) Fehlermeldung ausgegeben. \texttt{Zurück} verlinkt auf die Startseite, sodass Eingaben und angezeigte Meldungen gelöscht werden. 
+Durchgängig auf allen Seiten wird die Menüleiste angezeigt, die auf die \textbf{Kundenübersicht}, \textbf{Produktübersicht}, 
+\textbf{Bestellungsübersicht} sowie im eingeloggten Zustand auf den \textbf{Warenkorb} verlinkt und einen Link für
+\textbf{LogIn} bzw. \textbf{LogOut} bereitstellt.
+\\
+
+
+\noindent\textbf{Kundenübersicht}\\
+Hier werden jeweils zehn Kunden der gesamten Kundenliste angezeigt. Zur Navigation durch die
+Liste kann mit den Buttons \texttt{Vor} und \texttt{Zurück} geblättert oder mit
+\texttt{Start}/\texttt{Ende} direkt auf die erste bzw. letzte Seite gesprungen werden.
+Durch einen Klick auf die Kopfzeile der jeweiligen Spalte werden die Einträge
+nach dieser sortiert. Durch erneutes Anklicken kann die Sortierung der Einträge
+umgekehrt werden. Für die Suche in den Kundendaten wird über der Liste ein Suchformular bereitgestellt.\\
+\noindent Durch Klicken auf einen Benutzernamen gelangt man zu den zugehörigen
+\textbf{Kundendetails}.
+\\
+
+
+
+
+\noindent \textbf{Kundendetails editieren}\\
+%klick auf editieren gibt die Textfelder frei
+Die Textfelder, in denen die Kundendaten angezeigt werden, sind editierbar,
+sobald der Button \texttt{Bearbeiten} aktiviert wurde.
+%abbrechen 
+Durch \texttt{Zurück} kann die Bearbeitung abgebrochen werden. In diesem Fall 
+gelangt der Anwender zurück zur Übersicht und es
+werden keine Änderungen an die Datenbank übermittelt.
+%daten Speichern speichert in DB (transaktional gesichert) und gibt Rückmeldung
+Dies geschieht nur, wenn der Button \texttt{Speichern} betätigt wird.\\
+% ob gefunzt hat oder nicht
+
+\newpage\noindent\textbf{LogIn / LogOut}\\
+%Wie meldet man sich an, welche Möglichkeiten hat man
+Hat sich der Anwender über die \texttt{LogIn}-Maske eingeloggt, wird in der
+Menüleiste zusätzlich ein Link zu seinem \texttt{Warenkorb} angezeigt.\\
+%Produktdetails sind verfügbar inkl. Button in den Warenkorb
+Zudem werden die \texttt{Produktnummern} klickbar.\\
+Durch einen Klick auf \texttt{LogOut} wird der Nutzer direkt ausgeloggt und 
+auf die Startseite verlinkt. Auch ist der \texttt{Warenkorb} dann nicht mehr Bestandteil der Menüleiste.
+\\
+
+\noindent\textbf{Warenkorb}\\
+Durch Klicken einer \texttt{Produktnummer} gelangt man zu den Produktdetails.
+Hier hat man die Möglichkeit, das gewählte Produkt durch Angabe der gewünschten
+Menge im Textfeld in den Warenkorb zu legen.
+ Positionen im Warenkorb können mit dem Button \texttt{x} gelöscht
+werden.
+Mit dem Button \texttt{Bestellen} wird der Bestellvorgang abgeschlossen.
+Der Button \texttt{Weiter shoppen} führt zurück zur Produktübersicht.\\
+Sind beim Bestellen nicht mehr genug Exemplare eines Artikels verfügbar, 
+werden diese nicht bestellt und dem Anwender wird der Hinweis darauf angezeigt.
+ Loggt sich der Benutzer aus, wird der Warenkorb komplett geleert.
+\\
+
+\section{Aufbau}
+\textbf{Java Resources}
+\begin{longtable}{r | p{6.5cm}}
+	\textbf{package controller} & Hauptlogik mit Backing- und Managed\-Beans\\\\ 
+	\textbf{package dellstore} & bereitgestellte Persistenzschicht mit \-Entitätsklassen und Datenbank-Controller	\\\\
+	\textbf{package persist} & eigene Erweiterung der vorhandenen Persistenz\-schicht \\\\
+	\textbf{package util} & Werkzeugklassen \\ &(für Session, Pager, Validator etc.) \\
+\end{longtable}
+\noindent\textbf{WebContent}
+\begin{longtable}{r | p{5.5cm}}
+	\textbf{resources/} & CSS-Stylesheet \\\\
+	\textbf{WEB-INF/templates/} & xhtml-Templates für Basiselemente, die in die dargestellten Seiten eingebunden werden \\\\
+	\textbf{.xhtml} & xhtml-Templates Rendern der gebundenen Daten der ManagedBeans \\
+	
+	%Views
+	%evtl noch aufräumen / Ordnerstruktur
+
+\end{longtable}
+
+\end{document}
